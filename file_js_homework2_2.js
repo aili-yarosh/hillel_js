@@ -8,20 +8,24 @@ prompt.get(['size', 'value_name'], function (err, result) {
         console.error('Помилка: ', err);
         return;
     }
-    
-    if (!/^\d+$/.test(result.size)) {
+
+    var is_size_ok = !/^\d+$/.test(result.size);
+    var is_name_ok = !/^[a-zA-Z]+$/.test(result.value_name);
+
+    if (is_size_ok && is_name_ok) {
+        console.error("Помилка: size повинен бути цілим числом, а value_name повинен містити тільки латинські букви букви  ");
+        return;
+    } else if (is_size_ok) {
         console.error('Помилка: size повинен бути цілим числом.');
         return;
-    }
-    
-    if (!/^[a-zA-Z]+$/.test(result.value_name)) {
+    } else if (is_name_ok) {
         console.error('Помилка: value_name повинен містити тільки латинські букви букви.');
         return;
     }
-    
+
     var value_name = String(result.value_name)
     var size = Number(result.size)
-    
+
     console.log('  size: ' + size);
     console.log('  value_name: ' + value_name);
     console.log(size, value_name)
