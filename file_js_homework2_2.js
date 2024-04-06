@@ -8,11 +8,6 @@ prompt.get(['size', 'value_name'], function (err, result) {
         console.error('Помилка: ', err);
         return;
     }
-
-    if (!/^\d+$/.test(result.size) && (!/^[a-zA-Z]+$/.test(result.value_name))) {
-        console.error('Помилка: size повинен бути цілим числом а value_name повинен містити тільки букви.');
-        return;
-    }
     
     if (!/^\d+$/.test(result.size)) {
         console.error('Помилка: size повинен бути цілим числом.');
